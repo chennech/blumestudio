@@ -1,0 +1,41 @@
+Title: Raw Art Works 25th
+
+----
+
+Subtitle: Web Design and Development
+
+----
+
+Year: 2014
+
+----
+
+Coverimage: 1_thumb.png
+
+----
+
+Thumbimage: 1_thumb.png
+
+----
+
+Text: Raw Art Works is an arts non profit working with at risk youth in the city of Lynn Ma. Originaly Raw approached us to design their 25th anniversary campaign and logo but we soon discovered that their website was out dated and very hard to manage. Because Raw produces so much beautiful art, videos and content we needed to build a site that both showcased their amazing work and easy to update. The unuique aspect of the redesign was the technology behind it which pulls all of it's gallery images/videos from Flicker, Vimeo in addition to content from twitter and Instagram. The gallery and home page rarely need to be updated, because as soon as you post photos to Flickr or a new video to Vimeo the latest content is automatically pulled and featured.
+
+----
+
+Tags: interactive,identity,print
+
+----
+
+Role: art director,web design,graphic design,project management
+
+----
+
+Linkname: rawartworks.org
+
+----
+
+Link: http://www.rawartworks.org
+
+----
+
+Collaborators: Jason Pescione

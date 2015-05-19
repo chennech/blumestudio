@@ -1,0 +1,41 @@
+Title: The Theater Offensive
+
+----
+
+Year: 2014
+
+----
+
+Coverimage: 1_thumb.png
+
+----
+
+Thumbimage: 1_thumb.png
+
+----
+
+Tags: interactive,identity
+
+----
+
+Text: The Theater Offensive’s Mission is to present the diversity of lesbian, gay, bisexual, and transgender lives in art so bold it breaks through personal isolation, challenges the status quo, and builds thriving communities. The Theater Offensive approached us to design their 25th anniversary campaign and redesign their website. It was important to create a bold, easy to use responsive website that could be used as a hub to showcase all of their activities in all of the communities they serve.
+
+----
+
+Role: Design,Art Direction
+
+----
+
+Link: http://www.thetheateroffensive.org/
+
+----
+
+Collaborators: Jason Pescione: Development
+
+----
+
+Subtitle: 25th Anniversary & Website Re-Design
+
+----
+
+Linkname: thetheateroffensive.org

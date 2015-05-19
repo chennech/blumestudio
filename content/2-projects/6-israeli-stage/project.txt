@@ -1,0 +1,41 @@
+Title: Israeli Stage Identity
+
+----
+
+Coverimage: 1_thumb.png
+
+----
+
+Thumbimage: 1_thumb.png
+
+----
+
+Year: 2014
+
+----
+
+Tags: interactive,identity
+
+----
+
+Text: When Guy Ben-Aharon approached me to conceptualize, design, and make a website for his new stage reading concept I was very excited. Israeli Stage was formed to bring Israeli theatre to the American theatrical landscape and celebrate the art and artists of Israel. The identity needed to feel Israeli but also attract American audiences. The cactus (tsabar) was used as a major element because it has become a symbol of the Israeli character, someone that is prickly and can survive the rough climate and region. The Hebrew typeface used for the Logo was designed by Oded Ezer.
+
+----
+
+Role: Design,Art Direction,development
+
+----
+
+Link: http://www.israelistage.com
+
+----
+
+Collaborators: QFotos (photography)
+
+----
+
+Subtitle: 
+
+----
+
+Linkname: israelistage.com

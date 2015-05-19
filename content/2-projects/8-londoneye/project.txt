@@ -1,0 +1,41 @@
+Title: Energy of the Nation
+
+----
+
+Year: 2013
+
+----
+
+Tags: installation
+
+----
+
+Text: Energy of the Nation was a light show and infographic presentation that displayed the mood of the UK during the London 2012 Olympics games. Sosolimited's software captured all of the tweets coming out of the UK that mentioned the olympics, analyzed their sentiment, and charted them on a large LED wall next to the London Eye. At night that data was aggregated to create a unique data-driven light show. My role was to design the infographic display which charted the data and helped to explain how the system worked and come up with ideas for the light show animation
+
+----
+
+Role: Design,Information Design
+
+----
+
+Link: https://vimeo.com/49462065
+
+----
+
+Collaborators: Sosolimited
+
+----
+
+Subtitle: London 2012
+
+----
+
+Thumbimage: 1_thumb.png
+
+----
+
+Coverimage: 1_thumb.png
+
+----
+
+Linkname: See on Vimeo

@@ -1,0 +1,636 @@
+<!doctype html>
+<!--[if lte IE 8]>     <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class=""> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="filter &amp; sort magical layouts">
+
+  <title>Isotope &#xB7; Appendix</title>
+
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700">
+
+    <link rel="stylesheet" href="css/isotope-docs.css" media="screen">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@metafizzyco">
+  <meta name="twitter:url" content="http://isotope.metafizzy.co/appendix.html">
+  <meta name="twitter:title" content="Isotope Appendix">
+  <meta name="twitter:description" content="filter &amp; sort magical layouts">
+
+</head>
+<body class="appendix-page" data-page="appendix">
+
+  <div id="nav">
+    <h1><a href=".">Isotope</a></h1>
+    <ol id="site-nav">
+      <li class="nav-filtering"><a href="filtering.html">Filtering</a></li>
+      <li class="nav-sorting"><a href="sorting.html">Sorting</a></li>
+      <li class="nav-layout-modes sub-nav">
+        <a href="layout-modes.html">Layout modes</a>
+        <ul>
+          <li class="nav-masonry"><a href="layout-modes/masonry.html">masonry</a></li>
+          <li class="nav-fitrows"><a href="layout-modes/fitrows.html">fitRows</a></li>
+          <li class="nav-vertical"><a href="layout-modes/vertical.html">vertical</a></li>
+          <li class="nav-cellsbyrow"><a href="layout-modes/cellsbyrow.html">cellsByRow</a></li>
+          <li class="nav-packery"><a href="layout-modes/packery.html">packery</a></li>
+          <li class="nav-masonryhorizontal"><a href="layout-modes/masonryhorizontal.html">masonryHorizontal</a></li>
+          <li class="nav-fitcolumns"><a href="layout-modes/fitcolumns.html">fitColumns</a></li>
+          <li class="nav-cellsbycolumn"><a href="layout-modes/cellsbycolumn.html">cellsByColumn</a></li>
+          <li class="nav-horizontal"><a href="layout-modes/horizontal.html">horizontal</a></li>
+        </ul>
+      </li>
+      <li class="nav-options"><a href="options.html">Options</a></li>
+      <li class="nav-methods"><a href="methods.html">Methods</a></li>
+      <li class="nav-events"><a href="events.html">Events</a></li>
+      <li class="nav-license"><a href="license.html">License</a></li>
+      <li class="nav-appendix"><a href="appendix.html">Appendix</a></li>
+      <li class="nav-faq"><a href="faq.html">FAQ</a></li>
+    </ol>
+
+    <ul id="page-nav">
+<li class="page-nav__item--h2"><a href="#imagesloaded">imagesLoaded</a></li>
+<li class="page-nav__item--h2"><a href="#web-fonts">Web fonts</a></li>
+<li class="page-nav__item--h3"><a href="#typekit">Typekit</a></li>
+<li class="page-nav__item--h2"><a href="#support">Support</a></li>
+<li class="page-nav__item--h2"><a href="#submitting-issues">Submitting issues</a></li>
+<li class="page-nav__item--h3"><a href="#reduced-test-case-required">Reduced test case required</a></li>
+<li class="page-nav__item--h2"><a href="#upgrading-from-v1">Upgrading from v1</a></li>
+<li class="page-nav__item--h3"><a href="#new-features">New features</a></li>
+<li class="page-nav__item--h3"><a href="#changes">Changes</a></li>
+<li class="page-nav__item--h3"><a href="#upgrades-to-masonry-layout-mode">Upgrades to masonry layout mode</a></li>
+<li class="page-nav__item--h2"><a href="#requirejs">RequireJS</a></li>
+<li class="page-nav__item--h2"><a href="#browserify">Browserify</a></li>
+<li class="page-nav__item--h2"><a href="#animating-item-size">Animating item size</a></li>
+<li class="page-nav__item--h2"><a href="#component-libraries">Component libraries</a></li>
+<li class="page-nav__item--h3"><a href="#docready">docReady</a></li>
+<li class="page-nav__item--h3"><a href="#eventie">eventie</a></li>
+<li class="page-nav__item--h2"><a href="#extra-examples">Extra examples</a></li>
+<li class="page-nav__item--h2"><a href="#additional-resources">Additional resources</a></li>
+</ul>
+
+  </div>
+
+
+  <div id="content">
+    <div class="primary-content">
+        <h1>Appendix</h1>
+
+
+<h2 id="imagesloaded">imagesLoaded</h2>
+
+<p>Unloaded images can throw off Isotope layouts and cause item elements to overlap. <a href="http://imagesloaded.desandro.com">imagesLoaded</a> resolves this issue. imagesLoaded works by triggering a callback after all child images have been loaded.</p>
+
+<pre><code class="js"><span class="comment">// initialize Isotope after all images have loaded</span>
+<span class="keyword">var</span> <span class="jquery_var">$container</span> = $(<span class="string">&apos;#container&apos;</span>).imagesLoaded( <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+  <span class="jquery_var">$container</span>.isotope({
+    <span class="comment">// options</span>
+  });
+});
+</code></pre>
+<pre><code class="js"><span class="comment">// or with vanilla JS</span>
+<span class="keyword">var</span> container = <span class="built_in">document</span>.querySelector(<span class="string">&apos;#container&apos;</span>);
+<span class="keyword">var</span> <span class="isotope_var">iso</span>;
+<span class="comment">// initialize Isotope after all images have loaded</span>
+imagesLoaded( container, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+  <span class="isotope_var">iso</span> = <span class="keyword">new</span> <span class="isotope">Isotope</span>( container, {
+    <span class="comment">// options</span>
+  });
+});
+</code></pre>
+
+<p>Or initialize Isotope first, then trigger <a href="methods.html#layout"><code>layout</code></a> after images have loaded.</p>
+
+<pre><code class="js"><span class="comment">// initialize Isotope</span>
+<span class="keyword">var</span> <span class="jquery_var">$container</span> = $(<span class="string">&apos;#container&apos;</span>).isotope({
+  <span class="comment">// options</span>
+});
+<span class="comment">// layout Isotope again after all images have loaded</span>
+<span class="jquery_var">$container</span>.imagesLoaded( <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+  <span class="jquery_var">$container</span>.isotope(<span class="string">&apos;layout&apos;</span>);
+});
+</code></pre>
+<pre><code class="js"><span class="comment">// or with vanilla JS</span>
+<span class="comment">// initialize Isotope</span>
+<span class="keyword">var</span> <span class="isotope_var">iso</span> = <span class="keyword">new</span> <span class="isotope">Isotope</span>( container, {
+  <span class="comment">// options</span>
+});
+<span class="comment">// layout Isotope again after all images have loaded</span>
+imagesLoaded( container, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+  <span class="isotope_var">iso</span>.layout();
+});
+</code></pre>
+
+
+<h2 id="web-fonts">Web fonts</h2>
+
+<p>Like images, unloaded web fonts can throw off Isotope. To resolve this, trigger <a href="methods.html#layout"><code>layout</code></a> after fonts have been loaded. Both Typekit and Google WebFont Loader provide font events to control scripts based on how fonts are loaded.</p>
+
+<ul>
+  <li><a href="http://blog.typekit.com/2010/10/18/more-control-with-typekits-font-events/">Typekit font events</a></li>
+  <li><a href="https://developers.google.com/webfonts/docs/webfont_loader#Events">Google WebFont Loader: Events</a></li>
+</ul>
+
+<h3 id="typekit">Typekit</h3>
+
+<p>Try the script below when using Isotope on a page with Typekit. This will trigger Isotope when the document is ready and again when fonts have loaded. Be sure to remove Typekit&#x2019;s default script, <code>try{Typekit.load();}catch(e){}</code>.</p>
+
+<pre><code class="js"><span class="keyword">var</span> <span class="jquery_var">$container</span>;
+
+<span class="function"><span class="keyword">function</span> <span class="title">triggerIsotope</span><span class="params">()</span> </span>{
+  <span class="comment">// don&apos;t proceed if $container has not been selected</span>
+  <span class="keyword">if</span> ( !<span class="jquery_var">$container</span> ) {
+    <span class="keyword">return</span>;
+  }
+  <span class="comment">// init Isotope</span>
+  <span class="jquery_var">$container</span>.isotope({
+    <span class="comment">// options</span>
+  });
+}
+<span class="comment">// trigger Isotope on document ready</span>
+$(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+  <span class="jquery_var">$container</span> = $(<span class="string">&apos;#container&apos;</span>);
+  triggerIsotope();
+});
+<span class="comment">// trigger Isotope when fonts have loaded</span>
+Typekit.load({
+  active: triggerIsotope,
+  inactive: triggerIsotope
+});
+</code></pre>
+
+<pre><code class="js"><span class="comment">// or with vanilla JS</span>
+<span class="keyword">var</span> container, <span class="isotope_var">iso</span>;
+
+<span class="function"><span class="keyword">function</span> <span class="title">triggerIsotope</span><span class="params">()</span> </span>{
+  <span class="comment">// don&apos;t proceed if doc isn&apos;t ready</span>
+  <span class="keyword">if</span> ( !container ) {
+    <span class="keyword">return</span>;
+  }
+  <span class="comment">// init Isotope</span>
+  <span class="isotope_var">iso</span> = <span class="keyword">new</span> <span class="isotope">Isotope</span>( container, {
+    <span class="comment">// options</span>
+  });
+}
+<span class="comment">// initialize Isotope on document ready</span>
+docReady( <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+  <span class="keyword">var</span> container = <span class="built_in">document</span>.querySelector(<span class="string">&apos;#container&apos;</span>);
+  triggerIsotope();
+});
+<span class="comment">// trigger Isotope when fonts have loaded</span>
+Typekit.load({
+  active: triggerIsotope,
+  inactive: triggerIsotope
+});
+</code></pre>
+
+
+<h2 id="support">Support</h2>
+
+<ul>
+  <li>Having trouble setting up Isotope?</li>
+  <li>Running into a time-consuming problem?</li>
+</ul>
+
+<p><a href="https://www.codersclan.net/?repo_id=1">CodersClan has a dedicated support forum for Isotope</a>, where you can get personal support from experienced developers.</p>
+
+<p><a class="support-button button" href="https://www.codersclan.net/?repo_id=1">Get support</a></p>
+
+
+<h2 id="submitting-issues">Submitting issues</h2>
+
+<p>Submit bugs and issues to the <a href="https://github.com/metafizzy/isotope/issues/">GitHub issue tracker</a>.</p>
+
+<h3 id="reduced-test-case-required">Reduced test case required</h3>
+
+<p>All bug reports and problem issues require a <a href="http://css-tricks.com/reduced-test-cases/"><strong>reduced test case</strong></a>. Create one by forking any one of the <a href="http://codepen.io/desandro/tag/isotope-docs">CodePen examples</a> from these docs.</p>
+
+<ul>
+  <li>A reduced test case clearly demonstrates the bug or issue.</li>
+  <li>It contains the bare minimum HTML, CSS, and JavaScript required to demonstrate the bug.</li>
+  <li>A link to your production site is <strong>not</strong> a reduced test case.</li>
+</ul>
+
+<p>Providing a reduced test case is the best way to get your issue addressed. Without a reduced test case, your issue may be closed.</p>
+
+
+<h2 id="upgrading-from-v1">Upgrading from v1</h2>
+
+<h3 id="new-features">New features</h3>
+
+<ul>
+  <li>Custom CSS no longer required.</li>
+  <li>jQuery no longer required. Isotope works with vanilla JavaScript.</li>
+  <li><a href="events.html#layoutcomplete"><code>layoutComplete</code> event</a>.</li>
+  <li><a href="sorting.html#getsortdata"><code>getSortData</code> shortcut strings</a>.</li>
+  <li>Way better support for responsive web design with <a href="options.html#element-sizing">element sizing options</a>.</li>
+</ul>
+
+<h3 id="changes">Changes</h3>
+
+<ul>
+  <li><a href="https://github.com/louisremi/jquery-smartresize">smartresize jQuery plugin</a> removed.</li>
+  <li><a href="http://imagesloaded.desandro.com">imagesLoaded</a> no longer included, but is still recommended.</li>
+  <li><code>animationOptions</code> removed. jQuery animation removed. This means no animation for IE8 and IE9.</li>
+  <li><code>isResizable</code> option renamed to <a href="options.html#isresizebound"><code>isResizeBound</code></a></li>
+  <li><code>reLayout</code> method renamed to <a href="methods.html#layout"><code>layout</code></a></li>
+  <li><code>layout</code> method renamed to <a href="methods.html#layoutitems"><code>layoutItems</code></a></li>
+  <li><code>transformsEnabled</code> option removed. Transforms are still used, but only for transitions.</li>
+  <li><code>itemPositionDataEnabled</code> option removed. Item position is now accessible as it is set with <code>left</code> and <code>top</code>.</li>
+  <li><code>onLayout</code> option removed. Use the <a href="events.html#layoutcomplete"><code>layoutComplete</code> event</a>.</li>
+</ul>
+
+<h3 id="upgrades-to-masonry-layout-mode">Upgrades to <a href="layout-modes/masonry.html">masonry layout mode</a></h3>
+
+<ul>
+  <li>Corner stamp is now integrated as <a href="options.html#stamp"><code>stamp</code> option</a> and <a href="methods.html#stamp"><code>stamp</code> method</a></li>
+  <li>Centering integrated as the <a href="layout-modes/masonry.html#isfitwidth"><code>isFitWidth</code> option</a>.</li>
+  <li><code>gutterWidth</code> option renamed to <a href="layout-modes/masonry.html#gutter"><code>gutter</code></a></li>
+</ul>
+
+
+<h2 id="requirejs">RequireJS</h2>
+
+<p>Isotope supports <a href="http://requirejs.org">RequireJS</a>.</p>
+
+<p>You can require <a href="isotope.pkgd.js">isotope.pkgd.js</a>.</p>
+
+<pre><code class="js">requirejs( [
+  <span class="string">&apos;path/to/isotope.pkgd.js&apos;</span>,
+], <span class="function"><span class="keyword">function</span><span class="params">( Isotope )</span> </span>{
+  <span class="keyword">var</span> <span class="isotope_var">iso</span> = <span class="keyword">new</span> <span class="isotope">Isotope</span>( <span class="string">&apos;#container&apos;</span>, {...});
+});
+</code></pre>
+
+<p id="requirejs-layout-modes">Any <a href="layout-modes.html#included-modes">layout mode that&#x2019;s not included</a>, will need to be required separately</p>
+
+<pre><code class="js">requirejs( [
+  <span class="string">&apos;path/to/isotope.pkgd.js&apos;</span>,
+  <span class="string">&apos;path/to/masonry-horizontal.js&apos;</span>
+], <span class="function"><span class="keyword">function</span><span class="params">( Isotope )</span> </span>{
+  <span class="keyword">var</span> <span class="isotope_var">iso</span> = <span class="keyword">new</span> <span class="isotope">Isotope</span>( <span class="string">&apos;#container&apos;</span>, {
+    layoutMode: <span class="string">&apos;masonryHorizontal&apos;</span>
+  });
+});
+</code></pre>
+
+<p id="requirejs-pkgd-jquery">To use Isotope as a jQuery plugin with RequireJS and isotope.pkgd.js, you need to run jQuery bridget.</p>
+
+
+<pre><code class="js"><span class="comment">// require the require function</span>
+requirejs( [ <span class="string">&apos;require&apos;</span>, <span class="string">&apos;jquery&apos;</span>, <span class="string">&apos;path/to/isotope.pkgd.js&apos;</span> ],
+  <span class="function"><span class="keyword">function</span><span class="params">( require, $, Isotope )</span> </span>{
+    <span class="comment">// require jquery-bridget, it&apos;s included in isotope.pkgd.js</span>
+    <span class="built_in">require</span>( [ <span class="string">&apos;jquery-bridget/jquery.bridget&apos;</span> ],
+    <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+      <span class="comment">// make Isotope a jQuery plugin</span>
+      $.bridget( <span class="string">&apos;isotope&apos;</span>, <span class="isotope">Isotope</span> );
+      <span class="comment">// now you can use $().isotope()</span>
+      $(<span class="string">&apos;#container&apos;</span>).isotope({...});
+    }
+  );
+});
+</code></pre>
+
+<p id="requirejs-bower">Or, you can manage dependencies with <a href="http://bower.io">Bower</a>. Set <a href="http://requirejs.org/docs/api.html#config-baseUrl">baseUrl</a> to <code>bower_components</code> and set a path config for all your application code.</p>
+
+<pre><code class="js">requirejs.config({
+  baseUrl: <span class="string">&apos;bower_components/&apos;</span>,
+  paths: {
+    app: <span class="string">&apos;../&apos;</span>
+  }
+});
+
+requirejs( [
+  <span class="string">&apos;isotope/js/isotope&apos;</span>,
+  <span class="string">&apos;app/my-component.js&apos;</span>
+], <span class="function"><span class="keyword">function</span><span class="params">( Isotope, myComp )</span> </span>{
+  <span class="keyword">var</span> <span class="isotope_var">iso</span> = <span class="keyword">new</span> <span class="isotope">Isotope</span>( <span class="string">&apos;#container&apos;</span>, {...});
+});
+</code></pre>
+
+<p id="requirejs-bower-jquery">You can require Bower dependencies and use Isotope as a jQuery plugin with jQuery Bridget.</p>
+
+<pre><code class="js">requirejs.config({
+  baseUrl: <span class="string">&apos;../bower_components&apos;</span>,
+  paths: {
+    jquery: <span class="string">&apos;jquery/jquery&apos;</span>
+  }
+});
+
+requirejs( [
+    <span class="string">&apos;jquery&apos;</span>,
+    <span class="string">&apos;isotope/js/isotope&apos;</span>,
+    <span class="string">&apos;jquery-bridget/jquery.bridget&apos;</span>
+  ],
+  <span class="function"><span class="keyword">function</span><span class="params">( $, Isotope )</span> </span>{
+    <span class="comment">// make Isotope a jQuery plugin</span>
+    $.bridget( <span class="string">&apos;isotope&apos;</span>, <span class="isotope">Isotope</span> );
+    <span class="comment">// now you can use $().isotope()</span>
+    $(<span class="string">&apos;#container&apos;</span>).isotope({...});
+});
+</code></pre>
+
+<h2 id="browserify">Browserify</h2>
+
+<p>Isotope works with <a href="http://browserify.org">Browserify</a>. <a href="https://www.npmjs.org/package/isotope">Install Isotope with npm</a>.</p>
+
+<pre><code>npm install isotope-layout
+</code></pre>
+
+<pre><code class="js"><span class="keyword">var</span> <span class="isotope">Isotope</span> = <span class="built_in">require</span>(<span class="string">&apos;isotope-layout&apos;</span>);
+
+<span class="keyword">var</span> <span class="isotope_var">iso</span> = <span class="keyword">new</span> <span class="isotope">Isotope</span>( <span class="string">&apos;#container&apos;</span>, {
+  <span class="comment">// options...</span>
+});
+</code></pre>
+
+<p>Install and require <a href="layout-modes.html#included-modes">layout modes that are not included</a>.</p>
+
+<pre><code>npm install isotope-cells-by-row
+</code></pre>
+
+<pre><code class="js"><span class="keyword">var</span> <span class="isotope">Isotope</span> = <span class="built_in">require</span>(<span class="string">&apos;isotope-layout&apos;</span>);
+<span class="comment">// add cellsByRow layout mode</span>
+<span class="built_in">require</span>(<span class="string">&apos;isotope-cells-by-row&apos;</span>)
+
+<span class="keyword">var</span> <span class="isotope_var">iso</span> = <span class="keyword">new</span> <span class="isotope">Isotope</span>( <span class="string">&apos;#container&apos;</span>, {
+  layoutMode: <span class="string">&apos;cellsByRow&apos;</span>
+});
+</code></pre>
+
+<p id="browserify-jquery">To use Isotope as a jQuery plugin with Browserify, you need to use <a href="https://www.npmjs.org/package/jquery-bridget">jQuery Bridget</a></p>
+
+<pre><code>npm install jquery
+npm install jquery-bridget
+</code></pre>
+
+<pre><code class="js"><span class="keyword">var</span> $ = <span class="built_in">require</span>(<span class="string">&apos;jquery&apos;</span>);
+<span class="keyword">var</span> jQBridget = <span class="built_in">require</span>(<span class="string">&apos;jquery-bridget&apos;</span>);
+<span class="keyword">var</span> <span class="isotope">Isotope</span> = <span class="built_in">require</span>(<span class="string">&apos;isotope-layout&apos;</span>);
+<span class="comment">// make Isotope a jQuery plugin</span>
+$.bridget( <span class="string">&apos;isotope&apos;</span>, <span class="isotope">Isotope</span> );
+<span class="comment">// now you can use $().isotope()</span>
+$(<span class="string">&apos;#container&apos;</span>).isotope({
+  <span class="comment">// options...</span>
+});
+</code></pre>
+
+
+  <h2 id="animating-item-size">Animating item size</h2>
+
+  <p>You cannot transition or animate the size of an item element <em>and</em> properly lay out. But there is a trick &#x2014; you can animate a child element of the item element.</p>
+
+  <div class="row example">
+    <div class="cell example-code">
+<pre><code class="html"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;isotope&quot;</span>&gt;</span>
+  <span class="comment">&lt;!-- items have item-content children element --&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item&quot;</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item-content&quot;</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  ...
+</code></pre>
+<pre><code class="css"><span class="comment">/* item is invisible, but used for layout
+item-content is visible, and transitions size */</span>
+<span class="class">.animate-item-size-demo</span> <span class="class">.item</span>,
+<span class="class">.animate-item-size-demo</span> <span class="class">.item-content</span> <span class="rules">{
+  <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">60px</span></span></span>;
+  <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">60px</span></span></span>;
+}</span>
+<span class="class">.animate-item-size-demo</span> <span class="class">.item-content</span> <span class="rules">{
+  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#09D</span></span></span>;
+  <span class="rule"><span class="attribute">transition</span>:<span class="value"> width <span class="number">0.4s</span>, height <span class="number">0.4s</span></span></span>;
+  <span class="comment">/* -webkit-transition -moz, etc, too */</span>
+}</span>
+<span class="comment">/* both item and item content change size */</span>
+<span class="class">.animate-item-size-demo</span> <span class="class">.item</span><span class="class">.is-expanded</span>,
+<span class="class">.animate-item-size-demo</span> <span class="class">.item</span><span class="class">.is-expanded</span> <span class="class">.item-content</span> <span class="rules">{
+  <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">180px</span></span></span>;
+  <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">120px</span></span></span>;
+}</span>
+</code></pre>
+    </div>
+    <div id="animate-item-size" class="cell demo">
+      <p class="instruction">Click to item to toggle size</p>
+      <div class="isotope clickable animate-item-size-demo">
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+      </div>
+      <p class="edit"><a href="http://codepen.io/desandro/pen/jnhAi">Edit this example</a> or <a href="http://codepen.io/desandro/pen/fztmB">example with vanilla JS</a> on CodePen</p>
+    </div>
+  </div>
+
+  <p>This technique works on items with responsive, percentage widths. Although, it does require a bit more JS. <a href="http://codepen.io/desandro/pen/jGJKL">Check out the example on CodePen</a> to see how it&#x2019;s done.</p>
+
+  <div class="row example">
+    <div class="cell example-code">
+<pre><code class="css"><span class="id">#animate-item-size-responsive</span> <span class="class">.item</span> <span class="rules">{
+  <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">20%</span></span></span>;
+  <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">60px</span></span></span>;
+}</span>
+
+<span class="id">#animate-item-size-responsive</span> <span class="class">.item-content</span> <span class="rules">{
+  <span class="rule"><span class="attribute">width</span>:<span class="value">  <span class="number">100%</span></span></span>;
+  <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;
+  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#09D</span></span></span>;
+  <span class="rule"><span class="attribute">transition</span>:<span class="value"> width <span class="number">0.4s</span>, height <span class="number">0.4s</span></span></span>;
+  <span class="comment">/* -webkit-transition -moz, etc, too */</span>
+}</span>
+<span class="comment">/* item has expanded size */</span>
+<span class="id">#animate-item-size-responsive</span> <span class="class">.item</span><span class="class">.is-expanded</span> <span class="rules">{
+  <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">60%</span></span></span>;
+  <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">120px</span></span></span>;
+}</span>
+</code></pre>
+    </div>
+    <div id="animate-item-size-responsive" class="cell demo">
+      <p class="instruction">Click to item to toggle size</p>
+      <div class="isotope clickable animate-item-size-demo">
+        <div class="grid-sizer"></div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+          <div class="item">
+            <div class="item-content"></div>
+          </div>
+      </div>
+      <p class="edit"><a href="http://codepen.io/desandro/pen/utGrv">Edit this example</a> or <a href="http://codepen.io/desandro/pen/jeLKl"> the example with vanilla JS</a> on CodePen</p>
+    </div>
+
+  </div>
+
+
+
+<h2 id="component-libraries">Component libraries</h2>
+
+<p>Isotope includes several vanilla JS component libraries. You might have seen these used in the example code. You can use some of these libraries in your own code.</p>
+
+<h3 id="docready">docReady</h3>
+
+<p><a href="https://github.com/desandro/doc-ready">docReady triggers initialization logic when the document is ready,</a> just like jQuery&apos;s <code>$(document).ready()</code>. <code>docReady</code> is used to initialize all the demos in these docs.</p>
+
+<pre><code class="js">docReady( <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+  <span class="comment">// document is ready, let&apos;s do some fun stuff!</span>
+  <span class="keyword">var</span> container = <span class="built_in">document</span>.querySelector(<span class="string">&apos;#container&apos;</span>);
+  <span class="keyword">var</span> <span class="isotope_var">iso</span> = <span class="keyword">new</span> <span class="isotope">Isotope</span>( container );
+});
+</code></pre>
+
+<h3 id="eventie">eventie</h3>
+
+<p><a href="https://github.com/desandro/eventie">Eventie makes event binding in IE8 legit.</a></p>
+
+<pre><code class="js"><span class="keyword">var</span> elem = <span class="built_in">document</span>.querySelector(<span class="string">&apos;#my-elem&apos;</span>);
+<span class="function"><span class="keyword">function</span> <span class="title">onElemClick</span><span class="params">( event )</span> </span>{
+  <span class="built_in">console</span>.log( event.type + <span class="string">&apos; just happened on #&apos;</span> + event.target.id );
+  <span class="comment">// -&gt; click just happened on #my-elem</span>
+}
+<span class="comment">// bind it</span>
+eventie.bind( elem, <span class="string">&apos;click&apos;</span>, onElemClick );
+<span class="comment">// unbind it</span>
+eventie.unbind( elem, <span class="string">&apos;click&apos;</span>, onElemClick );
+</code></pre>
+
+
+<h2 id="extra-examples">Extra examples</h2>
+
+<ul>
+  <li><a href="http://codepen.io/desandro/pen/owAyG/">Combination filters with functions</a></li>
+  <li><a href="http://codepen.io/desandro/pen/GFbAs">Combination inclusive and exclusive filters with selects and checkboxes</a>. Explanation on <a href="https://github.com/metafizzy/isotope/issues/771#issuecomment-50991110">issue #771</a>.</li>
+  <li><a href="http://codepen.io/desandro/pen/Kpvyd">Reveal items on init</a></li>
+  <li><a href="http://codepen.io/desandro/pen/AEslp">Only filter items, no layout</a>. See <a href="https://github.com/metafizzy/isotope/issues/675#issuecomment-40675160">issue #675</a></li>
+  <li><a href="http://codepen.io/desandro/pen/mCdbD">Search and filter buttons</a></li>
+  <li><a href="http://codepen.io/desandro/pen/bsHix">Reveal each image as they load</a></li>
+  <li><a href="http://codepen.io/desandro/pen/vEJbNr">Filtering with toggle on/off buttons</a></li>
+  <li><a href="http://codepen.io/desandro/pen/vErxXj">Filtering with URL hash</a>. View <a href="http://s.codepen.io/desandro/debug/vErxXj#filter=%3Anot(.transition)">debug version</a> to see filter in URL hash.</li>
+</ul>
+
+
+<h2 id="additional-resources">Additional resources</h2>
+
+<ul>
+  <li>The <a href="http://metafizzy.co/blog/">Metafizzy blog</a> has posts that cover specialized use cases</li>
+  <li><a href="http://stackoverflow.com/users/182183/desandro?tab=answers">My answers on Stack Overflow</a></li>
+  <li><a href="https://delicious.com/desandro/using%3Aisotope">Sites using Isotope on Delicious</a></li>
+  <li><a href="http://stackoverflow.com/search?q=isotope">Stack Overflow questions about Isotope</a></li>
+  <li><a href="https://delicious.com/desandro/re:isotope">Related Isotope links</a></li>
+</ul>
+    </div>
+  </div>
+
+  <div id="footer">
+
+    <div class="primary-content">
+
+      <p class="footer-copy">Follow <a href="https://twitter.com/metafizzyco">@metafizzyco on Twitter for Isotope updates</a></p>
+    </div>
+
+    <div class="brand">
+      <a class="metafizzy-logo" href="http://metafizzy.co">M<span class="etafizzy">etafizzy</span></a>
+      <span class="copyright">&#xA9; 2011&#x2013;2015</span>
+    </div>
+
+  </div>
+
+<!-- Isotope does NOT require jQuery. But it does make things easier -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/jquery.min.js"><\/script>')</script>
+
+  <script src="js/isotope-docs.min.js"></script>
+
+  <!-- Google Analytics - Remove this if you copy/pasted this page -->
+  <script>
+    // Google Analytics
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-58739927-3','auto');ga('send','pageview');
+  </script>
+
+</body>
+</html>

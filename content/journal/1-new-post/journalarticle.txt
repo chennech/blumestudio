@@ -1,0 +1,52 @@
+Title: Think Minimalist
+
+----
+
+Date: 2015-02-06
+
+----
+
+Author: seyma
+
+----
+
+Thumbimage: 1_thumb.jpg
+
+----
+
+Tags: minimalist,design
+
+----
+
+Text: 
+
+Bacon ipsum dolor sit amet chuck prosciutto landjaeger ham hock filet mignon shoulder hamburger pig venison. Ham bacon corned beef, sausage kielbasa flank tongue pig drumstick capicola swine short loin ham hock
+
+(image: 1-blog-item.jpg class:py4)
+(image: 2-blog-item.jpg class:py4)
+
+(vimeo:http://vimeo.com/57704719)
+
+(youtube:https://www.youtube.com/watch?v=-icD0qSivKs)
+ 
+
+
+(columns...)
+
+(image: 1-blog-item.jpg)
+###Column A
+**Bacon ipsum dolor** sit amet chuck prosciutto landjaeger ham hock filet mignon shoulder hamburger pig venison. Ham bacon corned beef, sausage kielbasa flank tongue pig drumstick capicola swine short loin ham hock
+
+++++
+
+(image: 2-blog-item.jpg)
+###Column B
+*Bacon ipsum dolor* sit amet chuck prosciutto landjaeger ham hock filet mignon shoulder hamburger pig venison. Ham bacon corned beef, sausage kielbasa flank tongue pig drumstick capicola swine short loin ham hock
+
+++++
+
+(image: 1-blog-item.jpg)
+###Column C
+(link: http://www.aristotheme.com text: Bacon ipsum dolor) sit amet chuck prosciutto landjaeger ham hock filet mignon shoulder hamburger pig venison. Ham bacon corned beef, sausage kielbasa flank tongue pig drumstick capicola swine short loin ham hock
+
+(...columns)

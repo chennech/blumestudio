@@ -1,0 +1,539 @@
+<!doctype html>
+<!--[if lte IE 8]>     <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class=""> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="filter &amp; sort magical layouts">
+
+  <title>Isotope &#xB7; Filtering</title>
+
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700">
+
+    <link rel="stylesheet" href="css/isotope-docs.css" media="screen">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@metafizzyco">
+  <meta name="twitter:url" content="http://isotope.metafizzy.co/filtering.html">
+  <meta name="twitter:title" content="Isotope Filtering">
+  <meta name="twitter:description" content="filter &amp; sort magical layouts">
+
+</head>
+<body class="filtering-page" data-page="filtering">
+
+  <div id="nav">
+    <h1><a href=".">Isotope</a></h1>
+    <ol id="site-nav">
+      <li class="nav-filtering"><a href="filtering.html">Filtering</a></li>
+      <li class="nav-sorting"><a href="sorting.html">Sorting</a></li>
+      <li class="nav-layout-modes sub-nav">
+        <a href="layout-modes.html">Layout modes</a>
+        <ul>
+          <li class="nav-masonry"><a href="layout-modes/masonry.html">masonry</a></li>
+          <li class="nav-fitrows"><a href="layout-modes/fitrows.html">fitRows</a></li>
+          <li class="nav-vertical"><a href="layout-modes/vertical.html">vertical</a></li>
+          <li class="nav-cellsbyrow"><a href="layout-modes/cellsbyrow.html">cellsByRow</a></li>
+          <li class="nav-packery"><a href="layout-modes/packery.html">packery</a></li>
+          <li class="nav-masonryhorizontal"><a href="layout-modes/masonryhorizontal.html">masonryHorizontal</a></li>
+          <li class="nav-fitcolumns"><a href="layout-modes/fitcolumns.html">fitColumns</a></li>
+          <li class="nav-cellsbycolumn"><a href="layout-modes/cellsbycolumn.html">cellsByColumn</a></li>
+          <li class="nav-horizontal"><a href="layout-modes/horizontal.html">horizontal</a></li>
+        </ul>
+      </li>
+      <li class="nav-options"><a href="options.html">Options</a></li>
+      <li class="nav-methods"><a href="methods.html">Methods</a></li>
+      <li class="nav-events"><a href="events.html">Events</a></li>
+      <li class="nav-license"><a href="license.html">License</a></li>
+      <li class="nav-appendix"><a href="appendix.html">Appendix</a></li>
+      <li class="nav-faq"><a href="faq.html">FAQ</a></li>
+    </ol>
+
+    <ul id="page-nav">
+<li class="page-nav__item--h2"><a href="#selectors">Selectors</a></li>
+<li class="page-nav__item--h3"><a href="#jquery-selectors">jQuery selectors</a></li>
+<li class="page-nav__item--h2"><a href="#functions">Functions</a></li>
+<li class="page-nav__item--h2"><a href="#ui">UI</a></li>
+<li class="page-nav__item--h3"><a href="#filter-functions">Filter functions</a></li>
+<li class="page-nav__item--h3"><a href="#other-ui">Other UI</a></li>
+<li class="page-nav__item--h2"><a href="#combination-filters">Combination filters</a></li>
+<li class="page-nav__item--h3"><a href="#color">Color</a></li>
+<li class="page-nav__item--h3"><a href="#size">Size</a></li>
+<li class="page-nav__item--h3"><a href="#shape">Shape</a></li>
+<li class="page-nav__item--h3"><a href="#combination-filters-ui">Combination filters UI</a></li>
+<li class="page-nav__item--h2"><a href="#url-hash">URL hash</a></li>
+</ul>
+
+  </div>
+
+
+  <div id="content">
+    <div class="primary-content">
+        <h1>Filtering</h1>
+
+
+<p>Isotope can hide and show item elements via the <a href="options.html#filter"><code>filter</code> option</a>. Items that match that filter will be shown. Items that do not match will be hidden.</p>
+
+<div id="filtering-demo" class="demo">
+  <div id="filters" class="button-group js-radio-button-group">
+    <button class="button is-checked" data-filter="*">show all</button>
+    <button class="button" data-filter=".metal">metal</button>
+    <button class="button" data-filter=".transition">transition</button>
+    <button class="button" data-filter=".alkali, .alkaline-earth">alkali &amp; alkaline-earth</button>
+    <button class="button" data-filter=":not(.transition)">not transition</button>
+    <button class="button" data-filter=".metal:not(.transition)">metal but not transition</button>
+    <button class="button" data-filter="numberGreaterThan50">number &gt; 50</button>
+    <button class="button" data-filter="ium">name ends with &#x2013;ium</button>
+  </div>
+
+  <pre class="code-display"><code>$container.isotope({...})</code></pre>
+
+  <div class="isotope">
+      <div class="element-item transition metal " data-category="transition">
+        <h5 class="name">Mercury</h5>
+        <p class="symbol">Hg</p>
+        <p class="number">80</p>
+        <p class="weight">200.59</p>
+      </div>
+      <div class="element-item metalloid " data-category="metalloid">
+        <h5 class="name">Tellurium</h5>
+        <p class="symbol">Te</p>
+        <p class="number">52</p>
+        <p class="weight">127.6</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name">Bismuth</h5>
+        <p class="symbol">Bi</p>
+        <p class="number">83</p>
+        <p class="weight">208.980</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name">Lead</h5>
+        <p class="symbol">Pb</p>
+        <p class="number">82</p>
+        <p class="weight">207.2</p>
+      </div>
+      <div class="element-item transition metal " data-category="transition">
+        <h5 class="name">Gold</h5>
+        <p class="symbol">Au</p>
+        <p class="number">79</p>
+        <p class="weight">196.967</p>
+      </div>
+      <div class="element-item alkali metal " data-category="alkali">
+        <h5 class="name">Potassium</h5>
+        <p class="symbol">K</p>
+        <p class="number">19</p>
+        <p class="weight">39.0983</p>
+      </div>
+      <div class="element-item alkali metal " data-category="alkali">
+        <h5 class="name">Sodium</h5>
+        <p class="symbol">Na</p>
+        <p class="number">11</p>
+        <p class="weight">22.99</p>
+      </div>
+      <div class="element-item transition metal " data-category="transition">
+        <h5 class="name">Cadmium</h5>
+        <p class="symbol">Cd</p>
+        <p class="number">48</p>
+        <p class="weight">112.411</p>
+      </div>
+      <div class="element-item alkaline-earth metal " data-category="alkaline-earth">
+        <h5 class="name">Calcium</h5>
+        <p class="symbol">Ca</p>
+        <p class="number">20</p>
+        <p class="weight">40.078</p>
+      </div>
+      <div class="element-item transition metal " data-category="transition">
+        <h5 class="name">Rhenium</h5>
+        <p class="symbol">Re</p>
+        <p class="number">75</p>
+        <p class="weight">186.207</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name">Thallium</h5>
+        <p class="symbol">Tl</p>
+        <p class="number">81</p>
+        <p class="weight">204.383</p>
+      </div>
+      <div class="element-item metalloid " data-category="metalloid">
+        <h5 class="name">Antimony</h5>
+        <p class="symbol">Sb</p>
+        <p class="number">51</p>
+        <p class="weight">121.76</p>
+      </div>
+      <div class="element-item transition metal " data-category="transition">
+        <h5 class="name">Cobalt</h5>
+        <p class="symbol">Co</p>
+        <p class="number">27</p>
+        <p class="weight">58.933</p>
+      </div>
+      <div class="element-item lanthanoid metal inner-transition " data-category="lanthanoid">
+        <h5 class="name">Ytterbium</h5>
+        <p class="symbol">Yb</p>
+        <p class="number">70</p>
+        <p class="weight">173.054</p>
+      </div>
+      <div class="element-item noble-gas nonmetal " data-category="noble-gas">
+        <h5 class="name">Argon</h5>
+        <p class="symbol">Ar</p>
+        <p class="number">18</p>
+        <p class="weight">39.948</p>
+      </div>
+      <div class="element-item diatomic nonmetal " data-category="diatomic">
+        <h5 class="name">Nitrogen</h5>
+        <p class="symbol">N</p>
+        <p class="number">7</p>
+        <p class="weight">14.007</p>
+      </div>
+      <div class="element-item actinoid metal inner-transition " data-category="actinoid">
+        <h5 class="name">Uranium</h5>
+        <p class="symbol">U</p>
+        <p class="number">92</p>
+        <p class="weight">238.029</p>
+      </div>
+      <div class="element-item actinoid metal inner-transition " data-category="actinoid">
+        <h5 class="name">Plutonium</h5>
+        <p class="symbol">Pu</p>
+        <p class="number">94</p>
+        <p class="weight">(244)</p>
+      </div>
+  </div>
+  <p class="edit"><a href="http://codepen.io/desandro/pen/Ehgij">Edit this example</a> or <a href="http://codepen.io/desandro/pen/BgcCD/">example with vanilla JS</a> on CodePen</p>
+</div>
+
+  
+<h2 id="selectors">Selectors</h2>
+
+<p>The simplest way to filter items is with selectors, like classes. For example, each item element can have several identifying classes: <code>transition</code>, <code>metal</code>, <code>lanthanoid</code>, <code>alkali</code>, etc.</p>
+
+<pre><code class="html"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">&quot;container&quot;</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item transition metal&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item post-transition metal&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item alkali metal&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item transition metal&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item lanthanoid metal inner-transition&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="title">div</span>&gt;</span> 
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item halogen nonmetal&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="title">div</span>&gt;</span> 
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item alkaline-earth metal&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre>
+
+<p>Set a selector with the <a href="options.html#filter">filter option</a>. Items that match the selector will be shown. Items that do not match will be hidden. To filter <code>.metal</code> items:</p>
+
+<pre><code class="js"><span class="jquery_var">$container</span>.isotope({ filter: <span class="string">&apos;.metal&apos;</span> });
+</code></pre>
+
+<ul>
+  <li><code><span class="string">&apos;.alkali, .alkaline-earth&apos;</span></code> will show <code>.alkali</code> <strong>and</strong> <code> .alkaline-earth</code> item elements.</li>
+  <li><code><span class="string">&apos;.metal.transition&apos;</span></code> will show item elements that have <strong>both</strong> <code>.metal</code> and <code>.transition</code> classes.</li>
+  <li><code><span class="string">&apos;*&apos;</span></code> will show all items.</li>
+</ul>
+
+<h3 id="jquery-selectors">jQuery selectors</h3>
+
+<p>If jQuery is present, Isotope uses jQuery to filter items. You can filter items with <a href="http://api.jquery.com/category/selectors/">jQuery selectors</a>. For example:</p>
+
+<ul>
+  <li><code><span class="string">&apos;.metal:not(.transition)&apos;</span></code> will show <code>.metal</code> item elements that are NOT <code>.transition</code>.</li>
+</ul>
+
+
+<h2 id="functions">Functions</h2>
+
+<p>You can filter items with functions. The example above uses a function to filter items when the item&#x2019;s number is greater than 50.</p>
+
+<pre><code class="html"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">&quot;container&quot;</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item ...&quot;</span>&gt;</span><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">&quot;number&quot;</span>&gt;</span>80<span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item ...&quot;</span>&gt;</span><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">&quot;number&quot;</span>&gt;</span>42<span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item ...&quot;</span>&gt;</span><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">&quot;number&quot;</span>&gt;</span>20<span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;item ...&quot;</span>&gt;</span><span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">&quot;number&quot;</span>&gt;</span>75<span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre>
+
+<p>If you use jQuery, you can filter with <a href="http://api.jquery.com/is/#is-functionindex">functions in jQuery</a>.</p>
+
+<pre><code class="js"><span class="jquery_var">$container</span>.isotope({
+  <span class="comment">// filter element with numbers greater than 50</span>
+  filter: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="comment">// _this_ is the item element. Get text of element&apos;s .number</span>
+    <span class="keyword">var</span> number = $(<span class="keyword">this</span>).find(<span class="string">&apos;.number&apos;</span>).text();
+    <span class="comment">// return true to show, false to hide</span>
+    <span class="keyword">return</span> <span class="built_in">parseInt</span>( number, <span class="number">10</span> ) &gt; <span class="number">50</span>;
+  }
+})
+</code></pre>
+
+<p>You can still filter with functions if you don&#x2019;t use jQuery.</p>
+
+<pre><code class="js"><span class="isotope_var">iso</span>.arrange({
+  <span class="comment">// item element provided as argument</span>
+  filter: <span class="function"><span class="keyword">function</span><span class="params">( itemElem )</span> </span>{
+    <span class="keyword">var</span> number = itemElem.querySelector(<span class="string">&apos;.number&apos;</span>).innerText;
+    <span class="keyword">return</span> <span class="built_in">parseInt</span>( number, <span class="number">10</span> ) &gt; <span class="number">50</span>;
+  }
+});
+</code></pre>
+
+
+<h2 id="ui">UI</h2>
+
+<p>The example above uses buttons for UI. Each button has its filter set in the <code>data-filter</code> attribute.</p>
+
+<pre><code class="html"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">&quot;filters&quot;</span> <span class="attribute">class</span>=<span class="value">&quot;button-group&quot;</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;*&quot;</span>&gt;</span>show all<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;.metal&quot;</span>&gt;</span>metal<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;.transition&quot;</span>&gt;</span>transition<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;.alkali, .alkaline-earth&quot;</span>&gt;</span>alkali &amp; alkaline-earth<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;:not(.transition)&quot;</span>&gt;</span>not transition<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;.metal:not(.transition)&quot;</span>&gt;</span>metal but not transition<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre>
+
+<p>In the JS, we can use that filter when a button is clicked.</p>
+
+<pre><code class="js"><span class="comment">// init Isotope</span>
+<span class="keyword">var</span> <span class="jquery_var">$container</span> = $(<span class="string">&apos;#container&apos;</span>).isotope({
+  <span class="comment">// options</span>
+});
+<span class="comment">// filter items on button click</span>
+$(<span class="string">&apos;#filters&apos;</span>).on( <span class="string">&apos;click&apos;</span>, <span class="string">&apos;button&apos;</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+  <span class="keyword">var</span> filterValue = $(<span class="keyword">this</span>).attr(<span class="string">&apos;data-filter&apos;</span>);
+  <span class="jquery_var">$container</span>.isotope({ filter: filterValue });
+});
+</code></pre>
+
+<h3 id="filter-functions">Filter functions</h3>
+
+<p>To filter with a function, use a keyword and map it to an object.</p>
+
+<pre><code class="html">  <span class="comment">&lt;!-- in button group --&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;numberGreaterThan50&quot;</span>&gt;</span>number &gt; 50<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;ium&quot;</span>&gt;</span>name ends with -ium<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+</code></pre>
+
+<pre><code class="js"><span class="comment">// hash of functions that match data-filter values</span>
+<span class="keyword">var</span> filterFns = {
+  <span class="comment">// show if number is greater than 50</span>
+  numberGreaterThan50: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="keyword">var</span> number = $(<span class="keyword">this</span>).find(<span class="string">&apos;.number&apos;</span>).text();
+    <span class="keyword">return</span> <span class="built_in">parseInt</span>( number, <span class="number">10</span> ) &gt; <span class="number">50</span>;
+  },
+  <span class="comment">// show if name ends with -ium</span>
+  ium: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="keyword">var</span> name = $(<span class="keyword">this</span>).find(<span class="string">&apos;.name&apos;</span>).text();
+    <span class="keyword">return</span> name.match( <span class="regexp">/ium$/</span> );
+  }
+};
+<span class="comment">// filter items on button click</span>
+$(<span class="string">&apos;#filters&apos;</span>).on( <span class="string">&apos;click&apos;</span>, <span class="string">&apos;button&apos;</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+  <span class="keyword">var</span> filterValue = $(<span class="keyword">this</span>).attr(<span class="string">&apos;data-filter&apos;</span>);
+  <span class="comment">// use filter function if value matches</span>
+  filterValue = filterFns[ filterValue ] || filterValue;
+  <span class="jquery_var">$container</span>.isotope({ filter: filterValue });
+});
+</code></pre>
+
+<h3 id="other-ui">Other UI</h3>
+
+<p>Your UI does not have to be buttons. You can use <code>&lt;select&gt;</code>s, radio inputs,  and other options.</p>
+
+<ul>
+  <li><a href="http://codepen.io/desandro/pen/jubmr">Select example</a></li>
+  <li><a href="http://codepen.io/desandro/pen/qlwyL">Radio input example</a></li>
+  <li><a href="http://codepen.io/desandro/pen/wfaGu">Filtering with a quick-search</a></li>
+</ul>
+
+
+<h2 id="combination-filters">Combination filters</h2>
+
+<p>Filters can be combined. In addition to filtering for just <code>.red</code> or <code>.tall</code>, you can pass in a filter selector of both: <code>.red.tall</code>.</p>
+
+<div id="combination-filters-demo" class="demo">
+
+  <div class="ui-group">
+    <h3 id="color">Color</h3>
+    <div class="button-group js-radio-button-group" data-filter-group="color">
+      <button class="button is-checked" data-filter="">any</button>
+        <button class="button" data-filter=".red">red</button>
+        <button class="button" data-filter=".blue">blue</button>
+        <button class="button" data-filter=".yellow">yellow</button>
+    </div>
+  </div>
+
+  <div class="ui-group">
+    <h3 id="size">Size</h3>
+    <div class="button-group js-radio-button-group" data-filter-group="size">
+      <button class="button is-checked" data-filter="">any</button>
+        <button class="button" data-filter=".small">small</button>
+        <button class="button" data-filter=".wide">wide</button>
+        <button class="button" data-filter=".big">big</button>
+        <button class="button" data-filter=".tall">tall</button>
+    </div>
+  </div>
+
+  <div class="ui-group">
+    <h3 id="shape">Shape</h3>
+    <div class="button-group js-radio-button-group" data-filter-group="shape">
+      <button class="button is-checked" data-filter="">any</button>
+        <button class="button" data-filter=".round">round</button>
+        <button class="button" data-filter=".square">square</button>
+    </div>
+  </div>
+
+  <pre class="code-display"><code>$container.isotope({...})</code></pre>
+
+  <div class="isotope">
+            <div class="color-shape small round red"></div>
+            <div class="color-shape small round blue"></div>
+            <div class="color-shape small round yellow"></div>
+            <div class="color-shape small square red"></div>
+            <div class="color-shape small square blue"></div>
+            <div class="color-shape small square yellow"></div>
+            <div class="color-shape wide round red"></div>
+            <div class="color-shape wide round blue"></div>
+            <div class="color-shape wide round yellow"></div>
+            <div class="color-shape wide square red"></div>
+            <div class="color-shape wide square blue"></div>
+            <div class="color-shape wide square yellow"></div>
+            <div class="color-shape big round red"></div>
+            <div class="color-shape big round blue"></div>
+            <div class="color-shape big round yellow"></div>
+            <div class="color-shape big square red"></div>
+            <div class="color-shape big square blue"></div>
+            <div class="color-shape big square yellow"></div>
+            <div class="color-shape tall round red"></div>
+            <div class="color-shape tall round blue"></div>
+            <div class="color-shape tall round yellow"></div>
+            <div class="color-shape tall square red"></div>
+            <div class="color-shape tall square blue"></div>
+            <div class="color-shape tall square yellow"></div>
+  </div>
+
+  <p class="edit"><a href="http://codepen.io/desandro/pen/JEojz/">Edit this example on CodePen</a></p>
+</div>
+
+<h3 id="combination-filters-ui">Combination filters UI</h3>
+
+<p>In this example, buttons are collected in a <code>button-group</code>. Each <code>button-group</code> has a <code>data-filter-group</code>.</p>
+
+<pre><code class="html"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;button-group&quot;</span> <span class="attribute">data-filter-group</span>=<span class="value">&quot;color&quot;</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;&quot;</span>&gt;</span>any<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;.red&quot;</span>&gt;</span>red<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;.blue&quot;</span>&gt;</span>blue<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;.yellow&quot;</span>&gt;</span>yellow<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">&quot;button-group&quot;</span> <span class="attribute">data-filter-group</span>=<span class="value">&quot;size&quot;</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;&quot;</span>&gt;</span>any<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;.small&quot;</span>&gt;</span>small<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-filter</span>=<span class="value">&quot;.wide&quot;</span>&gt;</span>wide<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre>
+
+<p>In the JavaScript, these filters are stored in an object, <code>filters</code>. When a button is clicked, it changes the filter for that group. The object&#x2019;s values are then combined into one filter <code>&apos;.red.small&apos;</code>.</p>
+
+<pre><code class="js"><span class="comment">// store filter for each group</span>
+<span class="keyword">var</span> filters = {};
+
+$demo.on( <span class="string">&apos;click&apos;</span>, <span class="string">&apos;.button&apos;</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+  <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);
+  <span class="comment">// get group key</span>
+  <span class="keyword">var</span> $buttonGroup = $<span class="keyword">this</span>.parents(<span class="string">&apos;.button-group&apos;</span>);
+  <span class="keyword">var</span> filterGroup = $buttonGroup.attr(<span class="string">&apos;data-filter-group&apos;</span>);
+  <span class="comment">// set filter for group</span>
+  filters[ filterGroup ] = $<span class="keyword">this</span>.attr(<span class="string">&apos;data-filter&apos;</span>);
+  <span class="comment">// combine filters</span>
+  <span class="keyword">var</span> filterValue = <span class="string">&apos;&apos;</span>;
+  <span class="keyword">for</span> ( <span class="keyword">var</span> prop <span class="keyword">in</span> filters ) {
+    filterValue += filters[ prop ];
+  }
+  <span class="comment">// set filter for Isotope</span>
+  <span class="jquery_var">$container</span>.isotope({ filter: filterValue });
+});
+</code></pre>
+
+<h2 id="url-hash">URL hash</h2>
+
+<p>You can hook filtering into the <code>hashchange</code> event so that Isotope filters can be applied as links. See <a href="http://s.codepen.io/desandro/debug/vErxXj#filter=%3Anot(.transition)">filtering with URL hash example on CodePen</a>, <a href="http://codepen.io/desandro/pen/vErxXj">view code on CodePen</a>.</p>
+
+<pre><code class="js"><span class="function"><span class="keyword">function</span> <span class="title">getHashFilter</span><span class="params">()</span> </span>{
+  <span class="keyword">var</span> hash = location.hash;
+  <span class="comment">// get filter=filterName</span>
+  <span class="keyword">var</span> matches = location.hash.match( <span class="regexp">/filter=([^&amp;]+)/i</span> );
+  <span class="keyword">var</span> hashFilter = matches &amp;&amp; matches[<span class="number">1</span>];
+  <span class="keyword">return</span> hashFilter &amp;&amp; <span class="built_in">decodeURIComponent</span>( hashFilter );
+}
+
+$( <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+
+  <span class="keyword">var</span> <span class="jquery_var">$container</span> = $(<span class="string">&apos;.isotope&apos;</span>);
+
+  <span class="comment">// bind filter button click</span>
+  <span class="keyword">var</span> $filters = $(<span class="string">&apos;#filters&apos;</span>).on( <span class="string">&apos;click&apos;</span>, <span class="string">&apos;button&apos;</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="keyword">var</span> filterAttr = $( <span class="keyword">this</span> ).attr(<span class="string">&apos;data-filter&apos;</span>);
+    <span class="comment">// set filter in hash</span>
+    location.hash = <span class="string">&apos;filter=&apos;</span> + <span class="built_in">encodeURIComponent</span>( filterAttr );
+  });
+
+  <span class="keyword">var</span> isIsotopeInit = <span class="literal">false</span>;
+
+  <span class="function"><span class="keyword">function</span> <span class="title">onHashchange</span><span class="params">()</span> </span>{
+    <span class="keyword">var</span> hashFilter = getHashFilter();
+    <span class="keyword">if</span> ( !hashFilter &amp;&amp; isIsotopeInit ) {
+      <span class="keyword">return</span>;
+    }
+    isIsotopeInit = <span class="literal">true</span>;
+    <span class="comment">// filter isotope</span>
+    <span class="jquery_var">$container</span>.isotope({
+      itemSelector: <span class="string">&apos;.element-item&apos;</span>,
+      filter: hashFilter
+    });
+    <span class="comment">// set selected class on button</span>
+    <span class="keyword">if</span> ( hashFilter ) {
+      $filters.find(<span class="string">&apos;.is-checked&apos;</span>).removeClass(<span class="string">&apos;is-checked&apos;</span>);
+      $filters.find(<span class="string">&apos;[data-filter=&quot;&apos;</span> + hashFilter + <span class="string">&apos;&quot;]&apos;</span>).addClass(<span class="string">&apos;is-checked&apos;</span>);
+    }
+  }
+
+  $(<span class="built_in">window</span>).on( <span class="string">&apos;hashchange&apos;</span>, onHashchange );
+  <span class="comment">// trigger event handler to init Isotope</span>
+  onHashchange();
+});
+</code></pre>    </div>
+  </div>
+
+  <div id="footer">
+
+    <div class="primary-content">
+
+      <p class="footer-copy">Follow <a href="https://twitter.com/metafizzyco">@metafizzyco on Twitter for Isotope updates</a></p>
+    </div>
+
+    <div class="brand">
+      <a class="metafizzy-logo" href="http://metafizzy.co">M<span class="etafizzy">etafizzy</span></a>
+      <span class="copyright">&#xA9; 2011&#x2013;2015</span>
+    </div>
+
+  </div>
+
+<!-- Isotope does NOT require jQuery. But it does make things easier -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/jquery.min.js"><\/script>')</script>
+
+  <script src="js/isotope-docs.min.js"></script>
+
+  <!-- Google Analytics - Remove this if you copy/pasted this page -->
+  <script>
+    // Google Analytics
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-58739927-3','auto');ga('send','pageview');
+  </script>
+
+</body>
+</html>

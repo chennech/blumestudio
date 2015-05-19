@@ -1,0 +1,41 @@
+Title: Reconstitution 2012
+
+----
+
+Subtitle: 
+
+----
+
+Text: ReConstitution2012 was a self-funded Sosolimited art project which analysed the speech of Barack Obama and Mitt Romney during the 2012 presidential debates. The language used by the candidates generated a live typographical map of the events. Algorithms tracked the psychological states of Romney and Obama and compared them to past candidates. I was involved with designing and helped with the front-end development of the site. You can replay the debates and see the analysis at Recon12.com
+
+----
+
+Year: 2012
+
+----
+
+Tags: interactive
+
+----
+
+Role: 
+
+----
+
+Linkname: See the project
+
+----
+
+Link: http://recon12.com/
+
+----
+
+Collaborators: Created at Sosolimited
+
+----
+
+Thumbimage: 
+
+----
+
+Coverimage: 

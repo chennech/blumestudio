@@ -1,0 +1,167 @@
+<!doctype html>
+<!--[if lte IE 8]>     <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class=""> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="filter &amp; sort magical layouts">
+
+  <title>Isotope &#xB7; horizontal</title>
+
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700">
+
+    <link rel="stylesheet" href="../css/isotope-docs.css" media="screen">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@metafizzyco">
+  <meta name="twitter:url" content="http://isotope.metafizzy.co/horizontal.html">
+  <meta name="twitter:title" content="Isotope horizontal">
+  <meta name="twitter:description" content="filter &amp; sort magical layouts">
+
+</head>
+<body class="horizontal-page" data-page="horizontal">
+
+  <div id="nav">
+    <h1><a href="../.">Isotope</a></h1>
+    <ol id="site-nav">
+      <li class="nav-filtering"><a href="../filtering.html">Filtering</a></li>
+      <li class="nav-sorting"><a href="../sorting.html">Sorting</a></li>
+      <li class="nav-layout-modes sub-nav">
+        <a href="../layout-modes.html">Layout modes</a>
+        <ul>
+          <li class="nav-masonry"><a href="../layout-modes/masonry.html">masonry</a></li>
+          <li class="nav-fitrows"><a href="../layout-modes/fitrows.html">fitRows</a></li>
+          <li class="nav-vertical"><a href="../layout-modes/vertical.html">vertical</a></li>
+          <li class="nav-cellsbyrow"><a href="../layout-modes/cellsbyrow.html">cellsByRow</a></li>
+          <li class="nav-packery"><a href="../layout-modes/packery.html">packery</a></li>
+          <li class="nav-masonryhorizontal"><a href="../layout-modes/masonryhorizontal.html">masonryHorizontal</a></li>
+          <li class="nav-fitcolumns"><a href="../layout-modes/fitcolumns.html">fitColumns</a></li>
+          <li class="nav-cellsbycolumn"><a href="../layout-modes/cellsbycolumn.html">cellsByColumn</a></li>
+          <li class="nav-horizontal"><a href="../layout-modes/horizontal.html">horizontal</a></li>
+        </ul>
+      </li>
+      <li class="nav-options"><a href="../options.html">Options</a></li>
+      <li class="nav-methods"><a href="../methods.html">Methods</a></li>
+      <li class="nav-events"><a href="../events.html">Events</a></li>
+      <li class="nav-license"><a href="../license.html">License</a></li>
+      <li class="nav-appendix"><a href="../appendix.html">Appendix</a></li>
+      <li class="nav-faq"><a href="../faq.html">FAQ</a></li>
+    </ol>
+
+    <ul id="page-nav">
+<li class="page-nav__item--h2"><a href="#install">Install</a></li>
+<li class="page-nav__item--h2"><a href="#verticalalignment">verticalAlignment</a></li>
+</ul>
+
+  </div>
+
+
+  <div id="content">
+    <div class="primary-content">
+        <h1>horizontal</h1>
+
+
+<p>Items are arranged horizontally.</p>
+
+<div class="demo">
+  <div class="isotope js-isotope horizontal counting" data-isotope-options="{ &quot;layoutMode&quot;: &quot;horizontal&quot; }">
+    <div class="mini-item h2"></div>
+    <div class="mini-item"></div>
+    <div class="mini-item h3"></div>
+    <div class="mini-item w2"></div>
+    <div class="mini-item h2"></div>
+    <div class="mini-item h3"></div>
+    <div class="mini-item"></div>
+    <div class="mini-item h2"></div>
+  </div>
+  <p class="edit"><a href="http://codepen.io/desandro/pen/uGetl">Edit this example on CodePen</a></p>
+</div>
+
+
+<h2 id="install">Install</h2>
+
+<p>This layout mode is not included in <a href="../isotope.pkgd.js">isotope.pkgd.js</a> and must be installed separately.</p>
+
+<p><a href="https://raw.github.com/metafizzy/isotope-horizontal/master/horizontal.js">Download horizontal.js on GitHub</a>.</p>
+
+<p>Install with Bower:</p>
+
+<pre><code class="bash">bower install isotope-horizontal
+</code></pre>
+
+<p><a href="https://www.npmjs.org/package/isotope-horizontal">Install with npm</a>:</p>
+
+<pre><code class="bash">npm install isotope-horizontal
+</code></pre>
+
+
+<h1>Options</h1>
+
+
+<h2 id="verticalalignment">verticalAlignment</h2>
+
+<div class="param">
+  <p class="param-bit type">
+    <b>Type:</b>
+    <span class="value"><i>Number</i> a decimal 0 to 1</span>
+  </p>
+</div>
+
+<p>Aligns items vertically. <code>0</code> will align the origin edge. <code>1</code> will align the opposite edge. <code>0.5</code> will align center.</p>
+
+<pre><code class="js">layoutMode: <span class="string">&apos;horizontal&apos;</span>,
+horizontal: {
+  verticalAlignment: <span class="number">0.5</span>,
+}
+</code></pre>
+
+<div class="demo">
+  <div class="isotope js-isotope horizontal" data-isotope-options="{ &quot;layoutMode&quot;: &quot;horizontal&quot;, &quot;horizontal&quot;: { &quot;verticalAlignment&quot;: 0.5 } }">
+    <div class="mini-item h2"></div>
+    <div class="mini-item"></div>
+    <div class="mini-item h3"></div>
+    <div class="mini-item w2"></div>
+    <div class="mini-item h2"></div>
+    <div class="mini-item h3"></div>
+    <div class="mini-item"></div>
+    <div class="mini-item h2"></div>
+  </div>
+  <p class="edit"><a href="http://codepen.io/desandro/pen/fpsEG">Edit this example on CodePen</a></p>
+</div>
+    </div>
+  </div>
+
+  <div id="footer">
+
+    <div class="primary-content">
+
+      <p class="footer-copy">Follow <a href="https://twitter.com/metafizzyco">@metafizzyco on Twitter for Isotope updates</a></p>
+    </div>
+
+    <div class="brand">
+      <a class="metafizzy-logo" href="http://metafizzy.co">M<span class="etafizzy">etafizzy</span></a>
+      <span class="copyright">&#xA9; 2011&#x2013;2015</span>
+    </div>
+
+  </div>
+
+<!-- Isotope does NOT require jQuery. But it does make things easier -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="..//jquery.min.js"><\/script>')</script>
+
+  <script src="../js/isotope-docs.min.js"></script>
+
+  <!-- Google Analytics - Remove this if you copy/pasted this page -->
+  <script>
+    // Google Analytics
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-58739927-3','auto');ga('send','pageview');
+  </script>
+
+</body>
+</html>
