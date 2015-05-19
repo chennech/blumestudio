@@ -21,8 +21,7 @@
  
 
 <!-- JS -->
-<?php echo js('assets/js/templates/projects.js') ?>
-<?php echo js('assets/js/templates/home.js') ?>
+
 
 
 
