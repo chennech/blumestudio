@@ -1,0 +1,70 @@
+Title: About
+
+----
+
+Subtitle: 
+
+----
+
+Text1: 
+
+Blume Studio is a multi-discipline design and visual communication studio based in San Francisco. We strive to create meaning in our work by starting with understanding the essence of each project rather than styles and fads. We love technology but believe that the most important part of the design process is in the making and thinking with our hands first. Our best work has come from collaborating with clients who share our drive and passion for exceptional design and user experience. 
+
+Chen Blume was born in Tel Aviv Israel.  In Hebrew Chen means charm and beauty and the "Ch" is pronounced like the "ch" in Bach (the composer). She received a BFA from the graphic design department at the Massachusetts College of Art and Design. Chen is a also a co-founder of Specctr App. She has worked on multi-faceted projects that range from print, web, UX to art installations. When she’s not designing Chen enjoys biking, yoga and hand made crafts.
+
+----
+
+Text2: 
+
+##Values:
+- We trust our hands and process
+- Thoughtful critique and questioning, always.
+- Impact and engage 
+- exploration, never stop learning
+
+##Process:
+Our multidisciplinary approach comes from a drive of learning by making. We work best when we bounce ideas and inspiration from different interests and activities. 
+
+##Clients:
+We work with creative non-traditional, socially conscious companies, and organizations. We love small boutiques, entrepreneurs and makers that think outside the box.
+
+----
+
+Text3: 
+
+----
+
+Mentions: 
+
+</br> 
+<a href="http://www.smashingmagazine.com/author/chen-blume/"> Smashing Magazine </a> </br> 
+<a href="https://futureinsightslive.com/las-vegas-2015/speakers/chen-blume" >Future Insights</a> </br>   
+<a href=" http://workspiration.org/chen-blume"> Work Inspiration </a>
+
+----
+
+Collaborators: 
+
+</br> 
+- <a href="http://www.qfotos.com/"> Q Fotos</a></br>
+- <a href="https://twitter.com/metamitya" >Dmitriy Fabrikant</a> </br> 
+- Jason Pescione   </br> 
+- Nicole Kraieski  </br> 
+- Anya Vedmid  </br>
+- Fringe Union  </br>
+
+----
+
+Disciplines: 
+
+</br> 
+- Brand Identity </br> 
+- Graphic Design </br>
+- Interactive Design  </br> 
+ - Art Direction  </br> 
+- Curation  </br> 
+- Strategy </br>
+
+----
+
+Coverimage: coverimage.png

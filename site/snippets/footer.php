@@ -19,8 +19,7 @@
 
   </footer>
  
-
-<!-- JS -->
+ <?php echo css('assets/css/main.css') ?>	
 
 
 

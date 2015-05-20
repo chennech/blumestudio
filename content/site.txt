@@ -6,12 +6,20 @@ Author: Chen Blume
 
 ----
 
-Description: Blume Studio Works, graphic art, object design, photography and art.
+Description: Blume Studio Works, graphic art, Jewelry /object design, installation and experimentation.
 
 ----
 
-Keywords: BlumeStudio,Graphic Design,Jewelery,San Francisco,Boston
+Keywords: BlumeStudio, Graphic Design, Jewelry ,San Francisco, Boston
 
 ----
 
-Copyright: © 2014-(date: Year) (link: http://chenblume.com text: Blume Studio)
+Copyright: © 2014-(date: Year) (link: http://blumestudio.com text: Blume Studio)
+
+----
+
+Instagram: https://instagram.com/blumestudiojewelry
+
+----
+
+Twitter: https://twitter.com/blumestudio

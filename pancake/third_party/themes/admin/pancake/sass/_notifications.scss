@@ -1,0 +1,50 @@
+/* Notification System */
+.meows {
+    
+    a {
+        color: $white;
+        font-weight: bold;
+    }
+    
+  margin-top: 40px;
+  .inner {
+    @include border-radius(6px !important);
+    padding: 8px !important;
+    background: #222 !important;
+    border: 1px solid #111 !important;
+    h1 {
+      float: right;
+      width: 86%;
+      color: $white;
+      margin-bottom: 4px !important;
+    }
+    img {
+      max-width: 11%;
+      float: left;
+      margin-right: 3%;
+      @include border-radius($borderRadius);
+    }
+    .notification-text {
+      font-size: 13px !important;
+      font-size: 1.3rem !important;
+      line-height: 1.4;
+      font-weight: 400;
+      float: right; 
+      width: 86%;
+    }
+    .notification-text:after {
+      clear: right;
+    }
+    .close {
+      left: auto !important;
+      right: 4px;
+      font-size: 15px !important;
+      height: 18px !important;
+      width: 18px !important;
+      opacity: 0.6 !important;
+    }
+    .close:hover {
+      opacity: 1 !important;
+    }
+  }
+}

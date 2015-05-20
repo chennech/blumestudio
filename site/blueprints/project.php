@@ -44,6 +44,3 @@ fields:
      label: Cover Image
       type: select
       options: images
-      
-          
-     

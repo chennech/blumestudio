@@ -1,0 +1,27 @@
+{
+    "name": "pancakeapp/pancake",
+    "description": "Pancake is the invoicing, time tracking and project management software you and team will love to use.",
+    "keywords": [
+        "online invoicing",
+        "time tracking",
+        "project management",
+        "pancake"
+    ],
+    "license": "proprietary",
+    "type": "project",
+    "homepage": "https://www.pancakeapp.com",
+    "support": {
+        "email": "support@pancakeapp.com",
+        "issues": "https://www.pancakeapp.com/account/support/ticket/new"
+    },
+    "require": {
+        "owasp/phprbac": "2.0.*",
+        "swiftmailer/swiftmailer": "@stable",
+        "pixel418/markdownify": "2.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pancake\\": "pancake/apis/"
+        }
+    }
+}

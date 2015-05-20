@@ -1,0 +1,12 @@
+Title: Connect
+
+----
+
+Text: 
+
+##Say Hello!
+
+Email: chen (at) blumestudio.com
+(link: https://twitter.com/chennech text: Twitter)
+(link: https://www.pinterest.com/ text: Pinterest)
+(link: https://jewelry.blumestudio.com text: Store)

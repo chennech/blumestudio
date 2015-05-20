@@ -4,7 +4,7 @@
 
 <div class="column one-fifth ">
 	<h3><?php echo $page->title()->html() ?></h3>
-	<h5>Selected Graphic and interactive projects</h5>
+	<h5><?php echo $page->text()->html() ?></h5>
 	</div>
 
 <div class="column four-fifth ">	

@@ -19,6 +19,42 @@ class PagesController extends Controller {
 
   }
 
+  public function keep($id = '') {
+
+    $page = $this->page($id);
+
+    if(!$page) {
+      return response::error(l('pages.error.missing'));
+    }
+
+    $blueprint = blueprint::find($page);
+    $fields    = $blueprint->fields($page);
+
+    // trigger the validation
+    $form = new Form($fields->toArray());
+
+    // fetch the data for the form
+    $data = pagedata::createByInput($page, $form->serialize());
+
+    s::set(sha1($page->id()), $data);
+
+    return response::success('success');
+
+  }
+
+  public function discard($id = '') {
+
+    $page = $this->page($id);
+
+    if(!$page) {
+      return response::error(l('pages.error.missing'));
+    }
+
+    s::remove(sha1($page->id()));
+
+    return response::success('success');
+
+  }
   public function update($id = '') {
 
     $page = $this->page($id);
@@ -47,6 +83,8 @@ class PagesController extends Controller {
 
     try {
 
+      s::remove(sha1($page->id()));
+
       $page->update($data);
 
       // make sure that the sorting number is correct
@@ -62,6 +100,16 @@ class PagesController extends Controller {
 
         }
 
+      }
+
+      // get the blueprint of the parent page to find the 
+      // correct sorting mode for this page
+      $parentBlueprint = blueprint::find($page->parent());
+
+      // auto-update the uid if the sorting mode is set to zero
+      if($parentBlueprint->pages()->num()->mode() == 'zero') {
+        $uid = str::slug($page->title());
+        $page->move($uid);
       }
 
       history::visit($page->id());
@@ -81,14 +129,19 @@ class PagesController extends Controller {
 
   public function delete($id) {
 
-    $page = $this->page($id);
-
-    if(!$page) {
+    if($page = $this->page($id)) {
+      $parent = $page->parent();
+    } else {
       return response::error(l('pages.error.missing'));
     }
 
+    // remove unsaved changes
+    s::remove(sha1($page->id()));
+
+    $subpages = new Subpages($parent);
+
     try {
-      $page->delete();
+      $subpages->delete($page);
       return response::success('success');
     } catch(Exception $e) {
       return response::error($e->getMessage());
@@ -98,59 +151,54 @@ class PagesController extends Controller {
 
   public function sort($id = '') {
 
-    $page      = $this->page($id);
-    $blueprint = blueprint::find($page);
-    $uids      = get('uids');
-    $flip      = $blueprint->pages()->sort() == 'flip';
-    $children  = $page->children();
-
-    if($flip) {
-      $index = get('index', 1);
-      $uids  = array_reverse($uids);
-      $n     = $page->children()->visible()->count() - ($index * $blueprint->pages()->limit() - 1);
-
-      if($n <= 0) $n = 1;
-
+    if($page = $this->page($id)) {
+      $parent = $page->parent();
     } else {
-      $index = (get('index', 1) - 1);
-      $n     = (($blueprint->pages()->limit() * $index) + 1);
+      return response::error(l('pages.error.missing'));
     }
 
-    foreach($uids as $uid) {
+    $subpages = new Subpages($parent);
+    $num      = $subpages->sort($page, get('to'));
 
-      try {
+    return response::success('The page has been sorted', array(
+      'num' => $num
+    ));
 
-        $child = $children->find($uid);
-        $x     = api::createPageNum($child, $blueprint);
+  }
 
-        if($x !== false and $x >= 0) {
-          $child->sort($x);
-        } else {
-          $child->sort($n);
-        }
+  public function publish($id) {
 
-        $n++;
-
-      } catch(Exception $e) {
-
-      }
-
+    if($page = $this->page($id)) {
+      $parent = $page->parent();
+    } else {
+      return response::error(l('pages.error.missing'));
     }
 
-    return response::success('success');
+    if($page->isErrorPage()) {
+      return response::error('The error page cannot be published');
+    }
+
+    $subpages = new Subpages($parent);
+    $num      = $subpages->sort($page, 'last');
+
+    return response::success('The page has been sorted', array(
+      'num' => $num
+    ));
 
   }
 
   public function hide($id) {
 
-    $page = $this->page($id);
-
-    if(!$page) {
+    if($page = $this->page($id)) {
+      $parent = $page->parent();
+    } else {
       return response::error(l('pages.error.missing'));
     }
 
+    $subpages = new Subpages($parent);
+
     try {
-      $page->hide();
+      $subpages->hide($page);
       return response::success('success');
     } catch(Exception $e) {
       return response::error($e->getMessage());
@@ -171,6 +219,12 @@ class PagesController extends Controller {
       return response::error('This page type\'s url cannot be changed');
     }
 
+    // get currently unsaved changes
+    $changes = s::get(sha1($page->id()));
+
+    // remove the changes for the old id
+    s::remove(sha1($page->id()));
+
     try {
 
       if(site()->multilang() and site()->language()->code() != site()->defaultLanguage()->code()) {
@@ -180,6 +234,9 @@ class PagesController extends Controller {
       } else {
         $page->move(get('uid'));
       }
+
+      // store the changes with the new id
+      s::set(sha1($page->id()), $changes);
 
       return response::success('success', array(
         'uid' => $page->uid(),

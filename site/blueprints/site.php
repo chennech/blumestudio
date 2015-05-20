@@ -1,7 +1,7 @@
 <?php if(!defined('KIRBY')) exit ?>
 
 title: Site
-pages: default
+pages: true
 fields:
   title:
     label: Title
@@ -21,3 +21,10 @@ fields:
    url:
      label: url
      type:  url 
+   instagram:
+     label: instagram
+     label: url
+   twitter:
+     label: twitter
+     label: url  
+    

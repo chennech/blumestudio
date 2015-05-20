@@ -1,0 +1,41 @@
+Title: Specctr
+
+----
+
+Coverimage: 1_thumb.png
+
+----
+
+Thumbimage: 1_thumb.png
+
+----
+
+Year: 2014
+
+----
+
+Subtitle: Blueprints for the Web
+
+----
+
+Tags: adventure,web
+
+----
+
+Text: Specctr enables design and development teams to collaborate more accurately, efficiently, and effortlessly by automating spec generation. It has the capability to spec dimensions, color, font, spacing, and more. The Specctr app was created out of the frustration of working on large web design corporate team where Speccing or red-lining was a part of the routine. Specctr was founded by myself and Dmitriy Fabirkant. Visit Specctr.com to learn more about it.
+
+----
+
+Role: Co-founder,Designer
+
+----
+
+Link: http://www.Specctr.com
+
+----
+
+Collaborators: Dmitriy Fabrikant
+
+----
+
+Linkname: Specctr App

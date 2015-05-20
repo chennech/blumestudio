@@ -161,9 +161,13 @@ class Form extends Brick {
       $name = strtolower($file) . 'field';
 
       if(isset(static::$root['custom']) and is_dir(static::$root['custom'] . DS . $file)) {
-        static::$files[$name] = static::$root['custom'] . DS . $file . DS . $file . '.php';
+        $root = static::$root['custom'] . DS . $file . DS . $file . '.php';
       } else {
-        static::$files[$name] = static::$root['default'] . DS . $file . DS . $file . '.php';
+        $root = static::$root['default'] . DS . $file . DS . $file . '.php';
+      }
+
+      if(file_exists($root)) {
+        static::$files[$name] = $root;     
       }
 
     }
@@ -211,22 +215,15 @@ class Form extends Brick {
     static::$root['default'] = $defaultFieldsRoot;
     static::$root['custom']  = $customFieldsRoot;
 
-    load(static::files());
+    $classes = static::files();
 
-    spl_autoload_register(function($class) use($defaultFieldsRoot, $customFieldsRoot) {
-      $class = strtolower($class);
-      if(str::contains($class, 'field')) {
-        $type    = str_replace('field', '', $class);
-        $file    = $type . DS . $type . '.php';
-        $custom  = $customFieldsRoot . DS . $file;
-        $default = $defaultFieldsRoot . DS . $file;
-        if($customFieldsRoot and file_exists($custom)) {
-          include($custom);
-        } else if(file_exists($default)) {
-          include($default);
-        }
+    load($classes);
+
+    foreach($classes as $classname => $root) {
+      if(method_exists($classname, 'setup')) {
+        call(array($classname, 'setup'));
       }
-    });
+    }
 
   }
 
