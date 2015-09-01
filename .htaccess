@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Use PHP5.4 as default
 #AddHandler application/x-httpd-php54 .php
 # Kirby .htaccess
@@ -58,3 +59,7 @@ ExpiresByType application/x-shockwave-flash "access 1 month"
 ExpiresByType image/x-icon "access 1 year"
 ExpiresDefault "access 1 month"
 </IfModule>
+=======
+# Use PHP5.4 Single php.ini as default
+AddHandler application/x-httpd-php54s .php
+>>>>>>> adding files from blumestudio.com
