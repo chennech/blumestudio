@@ -67,4 +67,4 @@ Disciplines:
 
 ----
 
-Coverimage: coverimage.png
+Coverimage: cover4.jpg
