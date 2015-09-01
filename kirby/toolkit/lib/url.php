@@ -159,9 +159,8 @@ class Url {
     if(!empty($parts['fragments'])) $result[] = implode('/', $parts['fragments']);
     if(!empty($parts['params']))    $result[] = static::paramsToString($parts['params']);
     if(!empty($parts['query']))     $result[] = '?' . static::queryToString($parts['query']);
-    if(!empty($parts['hash']))      $result[] = '#' . $parts['hash'];
 
-    return implode('/', $result);
+    return implode('/', $result) . (!empty($parts['hash']) ? '#' . $parts['hash'] : '');
 
   }
 
@@ -307,7 +306,7 @@ class Url {
     if(is_null($url)) {
       $port = server::get('SERVER_PORT');
       $port = in_array($port, array(80, 443)) ? null : $port;
-      return static::scheme() . '://' . server::get('SERVER_NAME') . r($port, ':' . $port);
+      return static::scheme() . '://' . server::get('SERVER_NAME', server::get('SERVER_ADDR')) . r($port, ':' . $port);
     } else {
       $port   = static::port($url);
       $scheme = static::scheme($url);
@@ -345,6 +344,20 @@ class Url {
 
     return ($length) ? str::short($url, $length, $rep) : $url;
 
+  }
+
+  /**
+   * Returns the URL for document root no 
+   * matter what the path is. 
+   * 
+   * @return string
+   */
+  static public function index() {
+    if(r::cli()) {
+      return '/';
+    } else {
+      return static::base() . preg_replace('!\/index\.php$!i', '', server::get('SCRIPT_NAME'));
+    }
   }
 
 }

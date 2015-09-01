@@ -6,8 +6,9 @@ use Kirby\Request;
 
 class Kirby extends Obj {
 
-  static public $version = '2.1.0';
+  static public $version = '2.1.1';
   static public $instance;
+  static public $hooks = array();
 
   public $roots;
   public $urls;
@@ -218,7 +219,7 @@ class Kirby extends Obj {
 
     // connect the url class with its handlers
     url::$home = $this->urls()->index();
-    url::$to   = $this->option('url.to', function($url = '') {
+    url::$to   = $this->option('url.to', function($url = '', $lang = null) {
 
       if(url::isAbsolute($url)) return $url;
 
@@ -230,9 +231,14 @@ class Kirby extends Obj {
         case '.':
           return page()->url() . '/' . $url;
           break;
-        default:
-          // don't convert absolute urls
-          return url::makeAbsolute($url);
+        default:                            
+          if($page = page($url)) {
+            // use the "official" page url
+            return $page->url($lang);
+          } else {
+            // don't convert absolute urls
+            return url::makeAbsolute($url);
+          }
           break;
       }
 
@@ -505,19 +511,25 @@ class Kirby extends Obj {
 
   public function localize() {
 
+    $site = $this->site();
+
+    if($site->multilang() and !$site->language()) {
+      $site->language = $site->languages()->findDefault();
+    }    
+
     // set the local for the specific language
-    if(is_array($this->site()->locale())) {
-      foreach($this->site()->locale() as $key => $value) {
+    if(is_array($site->locale())) {
+      foreach($site->locale() as $key => $value) {
         setlocale($key, $value);        
       }
     } else {
-      setlocale(LC_ALL, $this->site()->locale());
+      setlocale(LC_ALL, $site->locale());
     }
 
     // additional language variables for multilang sites
-    if($this->site()->multilang()) {
+    if($site->multilang()) {
       // path for the language file
-      $file = $this->roots()->languages() . DS . $this->site()->language()->code() . '.php';
+      $file = $this->roots()->languages() . DS . $site->language()->code() . '.php';
       // load the file if it exists
       if(file_exists($file)) include_once($file);
     }
@@ -756,6 +768,41 @@ class Kirby extends Obj {
 
     return $this->response;
 
+  }
+
+  /**
+   * Register a new hook
+   * 
+   * @param string $hook The name of the hook
+   * @param closure $callback
+   */
+  public function hook($hook, $callback) {
+
+    if(isset(static::$hooks[$hook]) and is_array(static::$hooks[$hook])) {
+      static::$hooks[$hook][] = $callback;
+    } else {
+      static::$hooks[$hook] = array($callback);
+    }
+
+  }
+
+  /**
+   * Trigger a hook
+   * 
+   * @param string $hook The name of the hook
+   * @param mixed $args Additional arguments for the hook
+   * @return mixed
+   */
+  public function trigger($hook, $args = null) {
+    if(isset(static::$hooks[$hook]) and is_array(static::$hooks[$hook])) {
+      foreach(static::$hooks[$hook] as $callback) {
+        try {
+          call($callback, $args);        
+        } catch(Exception $e) {
+          // caught callback error
+        }
+      }
+    }
   }
 
   static public function start() {

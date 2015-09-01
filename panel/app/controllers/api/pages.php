@@ -8,6 +8,8 @@ class PagesController extends Controller {
 
       $page = api::createPage($id, get('title'), get('template'), get('uid'));
 
+      kirby()->trigger('panel.page.create', $page);
+
       return response::success('success', array(
         'uid' => $page->uid(),
         'uri' => $page->id()
@@ -27,16 +29,7 @@ class PagesController extends Controller {
       return response::error(l('pages.error.missing'));
     }
 
-    $blueprint = blueprint::find($page);
-    $fields    = $blueprint->fields($page);
-
-    // trigger the validation
-    $form = new Form($fields->toArray());
-
-    // fetch the data for the form
-    $data = pagedata::createByInput($page, $form->serialize());
-
-    s::set(sha1($page->id()), $data);
+    PageStore::keep($page);
 
     return response::success('success');
 
@@ -50,7 +43,7 @@ class PagesController extends Controller {
       return response::error(l('pages.error.missing'));
     }
 
-    s::remove(sha1($page->id()));
+    PageStore::discard($page);
 
     return response::success('success');
 
@@ -83,7 +76,7 @@ class PagesController extends Controller {
 
     try {
 
-      s::remove(sha1($page->id()));
+      PageStore::discard($page);
 
       $page->update($data);
 
@@ -114,6 +107,8 @@ class PagesController extends Controller {
 
       history::visit($page->id());
 
+      kirby()->trigger('panel.page.update', $page);
+
       return response::success('success', array(
         'file' => $page->content()->root(),
         'data' => $data,
@@ -135,13 +130,14 @@ class PagesController extends Controller {
       return response::error(l('pages.error.missing'));
     }
 
-    // remove unsaved changes
-    s::remove(sha1($page->id()));
-
     $subpages = new Subpages($parent);
 
     try {
       $subpages->delete($page);
+
+      // remove unsaved changes
+      PageStore::discard($page);
+
       return response::success('success');
     } catch(Exception $e) {
       return response::error($e->getMessage());
@@ -158,11 +154,15 @@ class PagesController extends Controller {
     }
 
     $subpages = new Subpages($parent);
-    $num      = $subpages->sort($page, get('to'));
 
-    return response::success('The page has been sorted', array(
-      'num' => $num
-    ));
+    try {
+      $num = $subpages->sort($page, get('to'));
+      return response::success('The page has been sorted', array(
+        'num' => $num
+      ));
+    } catch(Exception $e) {
+      return response::error($e->getMessage());
+    }
 
   }
 
@@ -179,11 +179,15 @@ class PagesController extends Controller {
     }
 
     $subpages = new Subpages($parent);
-    $num      = $subpages->sort($page, 'last');
 
-    return response::success('The page has been sorted', array(
-      'num' => $num
-    ));
+    try {
+      $num = $subpages->sort($page, 'last');
+      return response::success('The page has been sorted', array(
+        'num' => $num
+      ));
+    } catch(Exception $e) {
+      return response::error($e->getMessage());
+    }
 
   }
 
@@ -219,11 +223,8 @@ class PagesController extends Controller {
       return response::error('This page type\'s url cannot be changed');
     }
 
-    // get currently unsaved changes
-    $changes = s::get(sha1($page->id()));
-
-    // remove the changes for the old id
-    s::remove(sha1($page->id()));
+    $changes = PageStore::fetch($page);
+    PageStore::discard($page);
 
     try {
 
@@ -235,8 +236,10 @@ class PagesController extends Controller {
         $page->move(get('uid'));
       }
 
-      // store the changes with the new id
-      s::set(sha1($page->id()), $changes);
+      PageStore::update($page, $changes);
+
+      // hit the hook
+      kirby()->trigger('panel.page.move', $page);
 
       return response::success('success', array(
         'uid' => $page->uid(),

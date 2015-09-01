@@ -1,0 +1,3 @@
+[01-Sep-2015 14:53:02] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required './kirby/bootstrap.php' (include_path='.:/usr/lib64/php:/usr/share/pear') in /home2/blumestu/public_html/panel/index.php on line 9
+[01-Sep-2015 14:55:12] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required './kirby/bootstrap.php' (include_path='.:/usr/lib64/php:/usr/share/pear') in /home2/blumestu/public_html/panel/index.php on line 9
+[01-Sep-2015 15:06:23] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required './kirby/bootstrap.php' (include_path='.:/usr/lib64/php:/usr/share/pear') in /home2/blumestu/public_html/panel/index.php on line 9

@@ -8,9 +8,9 @@ language: en
 role: admin
 token: 9cef6f682ecad945a0770315c374ca55ea43567f
 history:
-  - projects/rawignite
   - about
   - contact
+  - projects/rawignite
   - projects
   - projects/specctr
 firstname:

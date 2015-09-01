@@ -4,7 +4,14 @@ class PagesController extends Controller {
 
   public function show($id) {
 
-    $page      = $this->page($id);
+    try {
+      $page = $this->page($id);      
+    } catch(Exception $e) {
+      $page = $this->page(dirname($id));
+      // dirty work around to move to the parent page
+      die('<script>window.location.href = "#/pages/show/' . $page->id() . '"</script>');
+    }
+
     $blueprint = blueprint::find($page);
     $fields    = $blueprint->fields($page);
     $content   = $page->content()->toArray();
@@ -36,7 +43,7 @@ class PagesController extends Controller {
     $content['title'] = $page->title();
 
     // merge with the kept snapshot
-    $changes = (array)s::get(sha1($page->id()));
+    $changes = PageStore::fetch($page);
     $content = array_merge($content, $changes);
 
     // create the form

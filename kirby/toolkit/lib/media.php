@@ -376,7 +376,7 @@ class Media {
    *
    * @param array $data Optional variables, which will be made available to the file
    */
-  static public function load($data = array()) {
+  public function load($data = array()) {
     return f::load($this->root, $data);
   }
 
@@ -502,6 +502,27 @@ class Media {
    */
   public function orientation() {
     return $this->dimensions()->orientation();
+  }
+
+  /**
+   * @param array $attr
+   * @return string
+   */
+  public function html($attr = array()) {
+
+    if($this->type() != 'image') return false;
+
+    $img = new Brick('img');
+    $img->attr('src', $this->url());
+
+    if(is_string($attr) or (is_object($attr) and method_exists($attr, '__toString'))) {
+      $img->attr('alt', (string)$attr);
+    } else if(is_array($attr)) {
+      $img->attr($attr);      
+    }
+
+    return $img;
+
   }
 
   /**
